@@ -68,6 +68,7 @@ module Twitter
         request_headers[:authorization] = authorization.to_s
       end
       connection.url_prefix = options[:endpoint] || @endpoint
+      request_headers["accept-encoding"] = "" ## Disable gzip encoding in response
       response = connection.run_request(method.to_sym, path, nil, request_headers) do |request|
         unless params.empty?
           case request.method
